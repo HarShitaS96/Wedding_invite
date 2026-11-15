@@ -1,14 +1,14 @@
-/* =================================
-   HARSHITA & SHISHIR - WEDDING
-   Main Stylesheet
-================================= */
+/* =====================================
+   HARSHITA & SHISHIR
+   ROYAL WEDDING INVITATION
+===================================== */
 
 :root {
-    --ivory: #FFF9F3;
-    --gold: #C8A86B;
-    --emerald: #1E4D45;
-    --burgundy: #6A1E2D;
-    --beige: #F6EEE4;
+    --emerald: #102C28;
+    --deep-emerald: #091E1B;
+    --gold: #D6B56D;
+    --light-gold: #F3DFA7;
+    --ivory: #FFF9F0;
 }
 
 * {
@@ -17,17 +17,301 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
-    background: var(--ivory);
-    color: var(--emerald);
-    font-family: Georgia, serif;
     overflow-x: hidden;
+    font-family: 'Cormorant Garamond', serif;
+    background: var(--emerald);
 }
 
-button {
+.welcome-screen {
+    min-height: 100vh;
+    min-height: 100svh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at center, #1B4139 0%, #102C28 48%, #091E1B 100%);
+    color: var(--ivory);
+}
+
+/* Background glow */
+
+.ambient-glow {
+    position: absolute;
+    width: 550px;
+    height: 550px;
+    border-radius: 50%;
+    background: rgba(214, 181, 109, 0.09);
+    filter: blur(100px);
+    animation: ambientPulse 6s ease-in-out infinite alternate;
+}
+
+@keyframes ambientPulse {
+    from {
+        transform: scale(0.85);
+        opacity: 0.4;
+    }
+    to {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+/* Golden particles */
+
+.particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    bottom: -20px;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--light-gold);
+    box-shadow: 0 0 10px 2px rgba(243, 223, 167, 0.5);
+    animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.9;
+    }
+    85% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-110vh) translateX(40px);
+        opacity: 0;
+    }
+}
+
+/* Main content */
+
+.welcome-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 35px 20px;
+    text-align: center;
+}
+
+.eyebrow {
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+}
+
+.welcome-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 6vw, 65px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: 1px;
+}
+
+.welcome-heading span {
+    display: block;
+    color: var(--light-gold);
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.2em;
+    margin-top: 5px;
+}
+
+.welcome-subtitle {
+    margin-top: 18px;
+    color: #D9D0BC;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+/* Envelope */
+
+.envelope-container {
+    width: min(340px, 85vw);
+    height: 230px;
+    margin: 55px auto 25px;
+    perspective: 1000px;
+}
+
+.envelope {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 18px 30px rgba(0,0,0,0.35));
+}
+
+.envelope-back {
+    position: absolute;
+    inset: 0;
+    background: #D9C39A;
+    border-radius: 5px;
+}
+
+.envelope-letter {
+    position: absolute;
+    width: 88%;
+    height: 88%;
+    left: 6%;
+    top: 5%;
+    background: var(--ivory);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #74552C;
+    font-family: 'Great Vibes', cursive;
+    font-size: 32px;
+    z-index: 1;
+}
+
+.letter-heart {
+    font-size: 18px;
+    color: #9B3941;
+    margin: 3px 0;
+}
+
+.envelope-front {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg, #EAD8B5, #C6A66C);
+    clip-path: polygon(0 0, 50% 57%, 100% 0, 100% 100%, 0 100%);
+    z-index: 2;
+    border-radius: 5px;
+}
+
+.envelope-flap {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg, #F0DEBC, #B9965C);
+    clip-path: polygon(0 0, 100% 0, 50% 60%);
+    transform-origin: top;
+    transition: transform 0.9s ease;
+    z-index: 4;
+}
+
+/* Wax seal */
+
+.wax-seal {
+    position: absolute;
+    z-index: 5;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    left: 50%;
+    top: 52%;
+    transform: translate(-50%, -50%);
+    border: 2px solid #E8CB89;
+    background: radial-gradient(circle at 35% 30%, #B78C45, #765020 75%);
+    color: #FFF0C5;
+    box-shadow:
+        0 0 0 4px rgba(198, 166, 108, 0.3),
+        0 0 22px rgba(214, 181, 109, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
     cursor: pointer;
+    animation: sealGlow 3s ease-in-out infinite;
+    transition: opacity 0.5s ease;
+}
+
+.seal-heart {
+    font-size: 12px;
+    color: #F9D5B0;
+}
+
+@keyframes sealGlow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(214,181,109,0.3);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(214,181,109,0.8);
+    }
+}
+
+/* Open instruction */
+
+.open-text {
+    border: none;
+    background: none;
+    color: var(--light-gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    letter-spacing: 4px;
+    margin-top: 5px;
+    cursor: pointer;
+    animation: textGlow 2s ease-in-out infinite;
+}
+
+.tap-icon {
+    margin: 0 8px;
+}
+
+@keyframes textGlow {
+    0%, 100% { opacity: 0.65; }
+    50% { opacity: 1; }
+}
+
+.welcome-footer {
+    margin-top: 45px;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: #A99A7C;
+}
+
+/* Initial opening interaction */
+
+.envelope-container.opening .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.envelope-container.opening .wax-seal {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Mobile adjustments */
+
+@media (max-width: 480px) {
+
+    .welcome-content {
+        padding: 25px 15px;
+    }
+
+    .eyebrow {
+        font-size: 10px;
+        letter-spacing: 4px;
+    }
+
+    .welcome-subtitle {
+        font-size: 14px;
+    }
+
+    .envelope-container {
+        height: 195px;
+        margin-top: 45px;
+    }
+
+    .wax-seal {
+        width: 68px;
+        height: 68px;
+    }
+
+    .welcome-footer {
+        margin-top: 35px;
+    }
 }
