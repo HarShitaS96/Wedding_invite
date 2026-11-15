@@ -1,0 +1,33 @@
+/* =================================
+   HARSHITA & SHISHIR - WEDDING
+   Main Stylesheet
+================================= */
+
+:root {
+    --ivory: #FFF9F3;
+    --gold: #C8A86B;
+    --emerald: #1E4D45;
+    --burgundy: #6A1E2D;
+    --beige: #F6EEE4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--ivory);
+    color: var(--emerald);
+    font-family: Georgia, serif;
+    overflow-x: hidden;
+}
+
+button {
+    cursor: pointer;
+}
