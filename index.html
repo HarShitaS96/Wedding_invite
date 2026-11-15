@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,18 +8,29 @@
 
     <title>Harshita & Shishir | Wedding Invitation</title>
 
-    <meta name="description" content="A royal wedding invitation for Harshita and Shishir.">
+    <meta name="description"
+        content="Join Harshita and Shishir as they begin their beautiful journey together.">
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
     <main id="app">
 
-        <section class="welcome-screen">
+        <!-- =================================
+             SCREEN 1: ROYAL ENVELOPE
+        ================================== -->
+
+        <section class="welcome-screen" id="welcomeScreen">
 
             <div class="ambient-glow"></div>
 
@@ -26,7 +38,9 @@
 
             <div class="welcome-content">
 
-                <p class="eyebrow">A SPECIAL INVITATION</p>
+                <p class="eyebrow">
+                    A SPECIAL INVITATION
+                </p>
 
                 <h1 class="welcome-heading">
                     A Royal Invitation
@@ -36,6 +50,8 @@
                 <p class="welcome-subtitle">
                     A celebration of love, togetherness and forever.
                 </p>
+
+                <!-- Envelope -->
 
                 <div class="envelope-container" id="envelope">
 
@@ -53,14 +69,17 @@
 
                         <div class="envelope-flap"></div>
 
+                        <!-- Wax Seal - To be redesigned later -->
+
                         <button
                             class="wax-seal"
                             id="openInvitation"
-                            aria-label="Open wedding invitation"
-                        >
+                            aria-label="Open wedding invitation">
+
                             <span>H</span>
                             <span class="seal-heart">♥</span>
                             <span>S</span>
+
                         </button>
 
                     </div>
@@ -68,9 +87,11 @@
                 </div>
 
                 <button class="open-text" id="openText">
+
                     <span class="tap-icon">✧</span>
                     TAP TO OPEN
                     <span class="tap-icon">✧</span>
+
                 </button>
 
                 <p class="welcome-footer">
@@ -81,9 +102,72 @@
 
         </section>
 
+
+        <!-- =================================
+             SCREEN 2: GOLDEN TRANSITION
+        ================================== -->
+
+        <div class="golden-transition" id="goldenTransition">
+
+            <div class="golden-light"></div>
+
+            <div class="transition-sparkles"
+                id="transitionSparkles"></div>
+
+        </div>
+
+
+        <!-- =================================
+             SCREEN 3: COUPLE INTRODUCTION
+        ================================== -->
+
+        <section class="invitation-intro" id="invitationIntro">
+
+            <div class="intro-decoration">✧</div>
+
+            <p class="intro-eyebrow">
+                WITH IMMENSE JOY AND LOVE
+            </p>
+
+            <h2 class="intro-heading">
+                Together with their families
+            </h2>
+
+            <div class="couple-names">
+
+                <span>Harshita</span>
+
+                <span class="couple-ampersand">&</span>
+
+                <span>Shishir</span>
+
+            </div>
+
+            <div class="intro-divider">
+
+                <span></span>
+                <span>♥</span>
+                <span></span>
+
+            </div>
+
+            <p class="intro-message">
+                Invite you to be a part of their beautiful journey
+                as they begin their forever.
+            </p>
+
+            <p class="intro-footer">
+                A NEW CHAPTER · A FOREVER PROMISE
+            </p>
+
+        </section>
+
     </main>
 
+
+    <!-- Main JavaScript -->
     <script src="main.js"></script>
 
 </body>
+
 </html>
