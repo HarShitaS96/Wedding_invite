@@ -1,14 +1,23 @@
-/* =====================================
+/* =========================================
    HARSHITA & SHISHIR
    ROYAL WEDDING INVITATION
-===================================== */
+   COMPLETE STYLESHEET
+========================================= */
+
+
+/* =========================================
+   1. GLOBAL STYLES
+========================================= */
 
 :root {
     --emerald: #102C28;
     --deep-emerald: #091E1B;
+
     --gold: #D6B56D;
     --light-gold: #F3DFA7;
+
     --ivory: #FFF9F0;
+    --burgundy: #8D3942;
 }
 
 * {
@@ -17,274 +26,843 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     overflow-x: hidden;
     font-family: 'Cormorant Garamond', serif;
     background: var(--emerald);
 }
 
+button {
+    cursor: pointer;
+    font-family: inherit;
+}
+
+#app {
+    width: 100%;
+    overflow: hidden;
+}
+
+
+/* =========================================
+   2. SCREEN 1 - ROYAL ENVELOPE
+========================================= */
+
 .welcome-screen {
+
     min-height: 100vh;
     min-height: 100svh;
+
     position: relative;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     overflow: hidden;
+
     background:
-        radial-gradient(ellipse at center, #1B4139 0%, #102C28 48%, #091E1B 100%);
+        radial-gradient(
+            ellipse at center,
+            #1B4139 0%,
+            #102C28 48%,
+            #091E1B 100%
+        );
+
     color: var(--ivory);
 }
 
-/* Background glow */
+
+/* Ambient golden glow */
 
 .ambient-glow {
+
     position: absolute;
+
     width: 550px;
     height: 550px;
+
     border-radius: 50%;
+
     background: rgba(214, 181, 109, 0.09);
+
     filter: blur(100px);
+
     animation: ambientPulse 6s ease-in-out infinite alternate;
 }
 
 @keyframes ambientPulse {
+
     from {
         transform: scale(0.85);
         opacity: 0.4;
     }
+
     to {
         transform: scale(1.2);
         opacity: 0.8;
     }
+
 }
 
-/* Golden particles */
+
+/* =========================================
+   3. FLOATING GOLDEN PARTICLES
+========================================= */
 
 .particles {
+
     position: absolute;
+
     inset: 0;
+
     overflow: hidden;
+
     pointer-events: none;
 }
 
 .particle {
+
     position: absolute;
+
     bottom: -20px;
+
     width: 3px;
     height: 3px;
+
     border-radius: 50%;
+
     background: var(--light-gold);
-    box-shadow: 0 0 10px 2px rgba(243, 223, 167, 0.5);
+
+    box-shadow:
+        0 0 10px 2px rgba(243, 223, 167, 0.5);
+
     animation: floatParticle linear infinite;
 }
 
 @keyframes floatParticle {
+
     0% {
         transform: translateY(0) translateX(0);
         opacity: 0;
     }
+
     15% {
         opacity: 0.9;
     }
+
     85% {
         opacity: 0.7;
     }
+
     100% {
         transform: translateY(-110vh) translateX(40px);
         opacity: 0;
     }
+
 }
 
-/* Main content */
+
+/* =========================================
+   4. WELCOME CONTENT
+========================================= */
 
 .welcome-content {
+
     position: relative;
+
     z-index: 2;
+
     width: 100%;
+
     padding: 35px 20px;
+
     text-align: center;
 }
 
 .eyebrow {
+
     color: var(--gold);
+
     font-size: 12px;
+
     letter-spacing: 5px;
+
     margin-bottom: 20px;
 }
 
 .welcome-heading {
+
     font-family: 'Cormorant Garamond', serif;
+
     font-size: clamp(38px, 6vw, 65px);
+
     font-weight: 400;
+
     line-height: 1.1;
+
     letter-spacing: 1px;
 }
 
 .welcome-heading span {
+
     display: block;
+
     color: var(--light-gold);
+
     font-family: 'Great Vibes', cursive;
+
     font-size: 1.2em;
+
     margin-top: 5px;
 }
 
 .welcome-subtitle {
+
     margin-top: 18px;
+
     color: #D9D0BC;
+
     font-size: 16px;
+
     letter-spacing: 1px;
 }
 
-/* Envelope */
+
+/* =========================================
+   5. ENVELOPE DESIGN
+========================================= */
 
 .envelope-container {
+
     width: min(340px, 85vw);
+
     height: 230px;
+
     margin: 55px auto 25px;
+
     perspective: 1000px;
 }
 
 .envelope {
+
     position: relative;
+
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 18px 30px rgba(0,0,0,0.35));
+
+    filter:
+        drop-shadow(0 18px 30px rgba(0,0,0,0.35));
 }
 
 .envelope-back {
+
     position: absolute;
+
     inset: 0;
+
     background: #D9C39A;
+
     border-radius: 5px;
 }
 
+
+/* Letter inside envelope */
+
 .envelope-letter {
+
     position: absolute;
+
     width: 88%;
     height: 88%;
+
     left: 6%;
     top: 5%;
+
     background: var(--ivory);
+
     display: flex;
     flex-direction: column;
+
     align-items: center;
     justify-content: center;
+
     color: #74552C;
+
     font-family: 'Great Vibes', cursive;
+
     font-size: 32px;
+
     z-index: 1;
 }
 
 .letter-heart {
+
     font-size: 18px;
-    color: #9B3941;
+
+    color: var(--burgundy);
+
     margin: 3px 0;
 }
 
+
+/* Envelope front */
+
 .envelope-front {
+
     position: absolute;
+
     inset: 0;
-    background: linear-gradient(145deg, #EAD8B5, #C6A66C);
-    clip-path: polygon(0 0, 50% 57%, 100% 0, 100% 100%, 0 100%);
+
+    background:
+        linear-gradient(
+            145deg,
+            #EAD8B5,
+            #C6A66C
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            50% 57%,
+            100% 0,
+            100% 100%,
+            0 100%
+        );
+
     z-index: 2;
+
     border-radius: 5px;
 }
 
+
+/* Envelope flap */
+
 .envelope-flap {
+
     position: absolute;
+
     inset: 0;
-    background: linear-gradient(145deg, #F0DEBC, #B9965C);
-    clip-path: polygon(0 0, 100% 0, 50% 60%);
+
+    background:
+        linear-gradient(
+            145deg,
+            #F0DEBC,
+            #B9965C
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 60%
+        );
+
     transform-origin: top;
+
     transition: transform 0.9s ease;
+
     z-index: 4;
 }
 
-/* Wax seal */
+
+/* =========================================
+   6. WAX SEAL
+   TEMPORARY DESIGN - TO BE REDESIGNED
+========================================= */
 
 .wax-seal {
+
     position: absolute;
+
     z-index: 5;
+
     width: 76px;
     height: 76px;
+
     border-radius: 50%;
+
     left: 50%;
     top: 52%;
+
     transform: translate(-50%, -50%);
+
     border: 2px solid #E8CB89;
-    background: radial-gradient(circle at 35% 30%, #B78C45, #765020 75%);
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #B78C45,
+            #765020 75%
+        );
+
     color: #FFF0C5;
+
     box-shadow:
         0 0 0 4px rgba(198, 166, 108, 0.3),
         0 0 22px rgba(214, 181, 109, 0.45);
+
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     gap: 2px;
+
     font-family: 'Cormorant Garamond', serif;
+
     font-size: 21px;
+
     cursor: pointer;
+
     animation: sealGlow 3s ease-in-out infinite;
+
     transition: opacity 0.5s ease;
 }
 
 .seal-heart {
+
     font-size: 12px;
+
     color: #F9D5B0;
 }
 
 @keyframes sealGlow {
+
     0%, 100% {
-        box-shadow: 0 0 10px rgba(214,181,109,0.3);
+        box-shadow:
+            0 0 10px rgba(214,181,109,0.3);
     }
+
     50% {
-        box-shadow: 0 0 30px rgba(214,181,109,0.8);
+        box-shadow:
+            0 0 30px rgba(214,181,109,0.8);
     }
+
 }
 
-/* Open instruction */
+
+/* =========================================
+   7. TAP TO OPEN
+========================================= */
 
 .open-text {
+
     border: none;
+
     background: none;
+
     color: var(--light-gold);
+
     font-family: 'Cormorant Garamond', serif;
+
     font-size: 15px;
+
     letter-spacing: 4px;
+
     margin-top: 5px;
+
     cursor: pointer;
+
     animation: textGlow 2s ease-in-out infinite;
 }
 
 .tap-icon {
+
     margin: 0 8px;
 }
 
 @keyframes textGlow {
-    0%, 100% { opacity: 0.65; }
-    50% { opacity: 1; }
+
+    0%, 100% {
+        opacity: 0.65;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
 }
 
+
+/* Footer */
+
 .welcome-footer {
+
     margin-top: 45px;
+
     font-size: 10px;
+
     letter-spacing: 4px;
+
     color: #A99A7C;
 }
 
-/* Initial opening interaction */
+
+/* Envelope opening */
 
 .envelope-container.opening .envelope-flap {
+
     transform: rotateX(180deg);
 }
 
 .envelope-container.opening .wax-seal {
+
     opacity: 0;
+
     pointer-events: none;
 }
 
-/* Mobile adjustments */
+
+/* =========================================
+   8. GOLDEN CINEMATIC TRANSITION
+========================================= */
+
+.golden-transition {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    pointer-events: none;
+
+    visibility: hidden;
+
+    opacity: 0;
+
+    overflow: hidden;
+
+    background: #FFF7E7;
+
+    transition: opacity 0.5s ease;
+}
+
+.golden-transition.active {
+
+    visibility: visible;
+
+    opacity: 1;
+}
+
+
+/* Expanding golden light */
+
+.golden-light {
+
+    position: absolute;
+
+    width: 20px;
+    height: 20px;
+
+    left: 50%;
+    top: 50%;
+
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%) scale(1);
+
+    background:
+        radial-gradient(
+            circle,
+            #FFFFFF 0%,
+            #FFF0B9 15%,
+            #E8BD63 35%,
+            rgba(214,181,109,0.6) 55%,
+            transparent 75%
+        );
+
+    box-shadow:
+        0 0 50px 30px rgba(239, 200, 112, 0.5);
+}
+
+.golden-transition.active .golden-light {
+
+    animation:
+        goldenExpand 2.1s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+}
+
+@keyframes goldenExpand {
+
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.4;
+    }
+
+    35% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(180);
+        opacity: 1;
+    }
+
+}
+
+
+/* Golden sparkle explosion */
+
+.transition-sparkles {
+
+    position: absolute;
+
+    inset: 0;
+}
+
+.transition-sparkle {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #FFF4C9;
+
+    box-shadow:
+        0 0 12px 4px #E5BC66;
+
+    animation:
+        sparkleBurst 1.8s ease-out forwards;
+}
+
+@keyframes sparkleBurst {
+
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translate(
+                calc(-50% + var(--move-x)),
+                calc(-50% + var(--move-y))
+            )
+            scale(2.5);
+
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================
+   9. SCREEN 3 - COUPLE INTRODUCTION
+========================================= */
+
+.invitation-intro {
+
+    min-height: 100vh;
+    min-height: 100svh;
+
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 50px 22px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #FFFFFF 0%,
+            #FFF9F0 65%,
+            #F2E5CF 100%
+        );
+
+    color: #57452D;
+}
+
+
+/* Decorative elements */
+
+.intro-decoration {
+
+    color: var(--gold);
+
+    font-size: 42px;
+
+    margin-bottom: 20px;
+}
+
+.intro-eyebrow {
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    color: #A78B56;
+
+    margin-bottom: 25px;
+}
+
+.intro-heading {
+
+    font-size: clamp(20px, 4vw, 30px);
+
+    font-weight: 400;
+
+    margin-bottom: 35px;
+}
+
+
+/* Couple names */
+
+.couple-names {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    font-family: 'Great Vibes', cursive;
+
+    font-size: clamp(65px, 12vw, 105px);
+
+    line-height: 1.15;
+
+    color: #94723E;
+
+    text-shadow:
+        0 2px 15px rgba(198,166,108,0.18);
+}
+
+.couple-ampersand {
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 38px;
+
+    color: #B68E4B;
+
+    margin: 8px 0;
+}
+
+
+/* Divider */
+
+.intro-divider {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin: 35px 0;
+
+    color: #B78E4D;
+}
+
+.intro-divider span:not(:nth-child(2)) {
+
+    width: 55px;
+
+    height: 1px;
+
+    background: #C8A86B;
+}
+
+
+/* Introduction message */
+
+.intro-message {
+
+    max-width: 430px;
+
+    font-size: 19px;
+
+    line-height: 1.8;
+
+    color: #77664D;
+}
+
+.intro-footer {
+
+    margin-top: 45px;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    color: #A78B56;
+}
+
+
+/* =========================================
+   10. INTRODUCTION REVEAL ANIMATION
+========================================= */
+
+.invitation-intro > * {
+
+    opacity: 0;
+
+    transform: translateY(25px);
+}
+
+.invitation-intro.revealed > * {
+
+    animation:
+        introReveal 1s ease forwards;
+}
+
+.invitation-intro.revealed > *:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.invitation-intro.revealed > *:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.invitation-intro.revealed > *:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+.invitation-intro.revealed > *:nth-child(5) {
+    animation-delay: 0.8s;
+}
+
+.invitation-intro.revealed > *:nth-child(6) {
+    animation-delay: 1s;
+}
+
+.invitation-intro.revealed > *:nth-child(7) {
+    animation-delay: 1.2s;
+}
+
+@keyframes introReveal {
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================
+   11. MOBILE RESPONSIVENESS
+========================================= */
 
 @media (max-width: 480px) {
 
@@ -314,4 +892,29 @@ body {
     .welcome-footer {
         margin-top: 35px;
     }
+
+    .intro-message {
+        font-size: 17px;
+    }
+
+}
+
+
+/* =========================================
+   12. REDUCED MOTION ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .particle,
+    .ambient-glow,
+    .wax-seal,
+    .open-text,
+    .transition-sparkle,
+    .golden-light,
+    .invitation-intro.revealed > * {
+
+        animation-duration: 0.01ms !important;
+    }
+
 }
