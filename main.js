@@ -11,51 +11,47 @@ for (let i = 0; i < 45; i++) {
   particles.appendChild(particle);
 }
 
-// ENVELOPE OPENING
-const envelope = document.getElementById("openInvitation");
-const openText = document.getElementById("openText");
+
+/* ROYAL PALACE OPENING */
+
 const welcomeScreen = document.getElementById("welcomeScreen");
-const goldenTransition = document.getElementById("goldenTransition");
-const transitionSparkles = document.getElementById("transitionSparkles");
+const openInvitation = document.getElementById("openInvitation");
 const invitationIntro = document.getElementById("invitationIntro");
+const petalsContainer = document.getElementById("palacePetals");
 
-let envelopeOpened = false;
+let invitationStarted = false;
 
-function createSparkles() {
-  transitionSparkles.innerHTML = "";
-
-  for (let i = 0; i < 110; i++) {
-    const sparkle = document.createElement("span");
-    sparkle.className = "transition-sparkle";
-
-    const angle = Math.random() * Math.PI * 2;
-    const distance = 100 + Math.random() * 550;
-
-    sparkle.style.setProperty("--x", Math.cos(angle) * distance + "px");
-    sparkle.style.setProperty("--y", Math.sin(angle) * distance + "px");
-    sparkle.style.animationDelay = Math.random() * 0.25 + "s";
-
-    transitionSparkles.appendChild(sparkle);
-  }
+// Create floating champagne-gold petals
+for (let i = 0; i < 32; i++) {
+  const petal = document.createElement("span");
+  petal.className = "petal";
+  petal.style.left = Math.random() * 100 + "%";
+  petal.style.animationDuration = (9 + Math.random() * 12) + "s";
+  petal.style.animationDelay = (Math.random() * 12) + "s";
+  petal.style.opacity = 0.3 + Math.random() * 0.6;
+  petalsContainer.appendChild(petal);
 }
 
-envelope.addEventListener("click", () => {
-  if (envelopeOpened) return;
+// Enter the royal invitation
+openInvitation.addEventListener("click", () => {
+  if (invitationStarted) return;
 
-  envelopeOpened = true;
-  envelope.classList.add("opening");
-  openText.textContent = "OPENING YOUR INVITATION...";
+  invitationStarted = true;
+  openInvitation.textContent = "WELCOME TO OUR CELEBRATION";
 
-  setTimeout(() => {
-    createSparkles();
-    goldenTransition.classList.add("active");
-  }, 800);
+  welcomeScreen.classList.add("palace-exit");
 
   setTimeout(() => {
-    welcomeScreen.style.display = "none";
-    goldenTransition.classList.remove("active");
     invitationIntro.scrollIntoView({ behavior: "smooth" });
-  }, 2400);
+  }, 500);
+});
+
+// Continue to wedding date
+const continueButton = document.getElementById("continueToDate");
+const dateSection = document.getElementById("dateSection");
+
+continueButton.addEventListener("click", () => {
+  dateSection.scrollIntoView({ behavior: "smooth" });
 });
 
 // CONTINUE TO SCRATCH CARD
