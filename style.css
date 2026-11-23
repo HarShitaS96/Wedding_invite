@@ -973,6 +973,350 @@ button {
     padding: 40px 18px;
   }
 
+/* =========================================
+   ROYAL MIDNIGHT NAVY REDESIGN
+   Champagne Gold + Warm Ivory
+========================================= */
+
+:root {
+  --emerald: #101a35;
+  --deep-emerald: #080e20;
+  --gold: #c9aa70;
+  --light-gold: #f0dfb8;
+  --ivory: #f7f0e4;
+  --dark-text: #202943;
+}
+
+body {
+  background: var(--ivory);
+  color: var(--dark-text);
+}
+
+/* ROYAL PALACE OPENING */
+
+.welcome-screen {
+  min-height: 100svh;
+  background:
+    radial-gradient(ellipse at 50% 35%, rgba(62, 77, 115, .48), transparent 48%),
+    linear-gradient(180deg, #172443 0%, #0b132a 55%, #060b19 100%);
+  color: var(--light-gold);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.welcome-screen::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(220, 190, 133, .65);
+  outline: 1px solid rgba(220, 190, 133, .2);
+  outline-offset: 7px;
+  pointer-events: none;
+}
+
+.welcome-screen::after {
+  content: "✦  ❖  ✦";
+  position: absolute;
+  bottom: 9%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--gold);
+  letter-spacing: 14px;
+  font-size: 18px;
+}
+
+.palace-glow {
+  position: absolute;
+  width: 70vw;
+  height: 70vw;
+  max-width: 650px;
+  max-height: 650px;
+  left: 50%;
+  top: 42%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(229, 195, 132, .17), transparent 68%);
+  animation: palaceGlow 5s ease-in-out infinite alternate;
+  z-index: -1;
+}
+
+@keyframes palaceGlow {
+  from { opacity: .45; transform: translate(-50%, -50%) scale(.85); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1.12); }
+}
+
+.palace-arch {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid rgba(211, 178, 117, .55);
+  border-bottom: none;
+  border-radius: 50% 50% 0 0;
+  pointer-events: none;
+}
+
+.arch-outer {
+  width: min(88vw, 650px);
+  height: min(110vw, 790px);
+  top: 12%;
+  box-shadow: 0 0 28px rgba(205, 171, 108, .12);
+}
+
+.arch-inner {
+  width: min(75vw, 540px);
+  height: min(98vw, 700px);
+  top: 17%;
+  border-color: rgba(230, 207, 161, .35);
+}
+
+.palace-chandelier {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #f5d99e;
+  font-size: 54px;
+  text-shadow: 0 0 15px #e4bd72, 0 0 45px #c49a54;
+  animation: chandelierGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes chandelierGlow {
+  from { opacity: .65; filter: brightness(.8); }
+  to { opacity: 1; filter: brightness(1.35); }
+}
+
+.royal-opening-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  width: min(90%, 700px);
+  margin: auto;
+  padding-top: 30vh;
+  animation: royalEntrance 1.8s ease both;
+}
+
+@keyframes royalEntrance {
+  from { opacity: 0; transform: translateY(35px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.royal-opening-content h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(44px, 9vw, 76px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: 3px;
+  margin: 28px 0 18px;
+  text-shadow: 0 3px 25px rgba(0,0,0,.5);
+}
+
+.royal-divider {
+  color: var(--gold);
+  letter-spacing: 3px;
+}
+
+.opening-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 23px;
+  color: #e9d9ba;
+  margin-bottom: 35px;
+}
+
+.royal-enter-button {
+  padding: 16px 27px;
+  background: linear-gradient(135deg, #e9d5aa, #b9945b);
+  color: #111a31;
+  border: 1px solid #f8e6bd;
+  letter-spacing: 2px;
+  font-size: 10px;
+  cursor: pointer;
+  box-shadow: 0 8px 35px rgba(0,0,0,.3);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.royal-enter-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(222,190,132,.3);
+}
+
+.royal-enter-button span {
+  margin-left: 12px;
+}
+
+.opening-bottom {
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: #ddc79d;
+}
+
+/* FLOATING PETALS */
+
+.petal {
+  position: absolute;
+  top: -30px;
+  width: 11px;
+  height: 16px;
+  border-radius: 80% 10% 80% 10%;
+  background: linear-gradient(135deg, #f2d9ad, #b98c58);
+  opacity: .75;
+  animation: petalFall linear infinite;
+}
+
+@keyframes petalFall {
+  0% { transform: translate3d(0, -5vh, 0) rotate(0deg); opacity: 0; }
+  15% { opacity: .8; }
+  100% { transform: translate3d(65px, 110vh, 0) rotate(600deg); opacity: 0; }
+}
+
+/* COUPLE INTRODUCTION */
+
+.invitation-intro {
+  min-height: 100svh;
+  position: relative;
+  overflow: hidden;
+  color: var(--light-gold);
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(54, 72, 112, .6), transparent 58%),
+    linear-gradient(145deg, #172443, #080e20);
+  padding: 80px 22px;
+}
+
+.invitation-intro::before {
+  content: "";
+  position: absolute;
+  inset: 22px;
+  border: 1px solid rgba(211, 178, 117, .65);
+  pointer-events: none;
+}
+
+.intro-frame {
+  position: relative;
+  z-index: 2;
+  width: min(650px, 100%);
+  margin: auto;
+  padding: 65px 25px;
+  text-align: center;
+  border: 1px solid rgba(211, 178, 117, .4);
+  outline: 1px solid rgba(211, 178, 117, .18);
+  outline-offset: 8px;
+  background: rgba(7, 14, 31, .3);
+}
+
+.invitation-intro .eyebrow,
+.invitation-intro .intro-small,
+.invitation-intro .intro-message {
+  color: #e8d9ba;
+}
+
+.invitation-intro .couple-name {
+  color: #f0d8a5;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(64px, 12vw, 100px);
+  font-weight: 500;
+  line-height: 1;
+  text-shadow: 0 0 28px rgba(225, 190, 127, .22);
+}
+
+.name-reveal {
+  margin: 35px 0;
+}
+
+.bride-name {
+  animation: nameRevealLeft 1.4s ease both;
+}
+
+.groom-name {
+  animation: nameRevealRight 1.4s .45s ease both;
+}
+
+@keyframes nameRevealLeft {
+  from { opacity: 0; transform: translateX(-65px); filter: blur(8px); }
+  to { opacity: 1; transform: translateX(0); filter: blur(0); }
+}
+
+@keyframes nameRevealRight {
+  from { opacity: 0; transform: translateX(65px); filter: blur(8px); }
+  to { opacity: 1; transform: translateX(0); filter: blur(0); }
+}
+
+.invitation-intro .ampersand {
+  color: #f5dba8;
+  font-size: 48px;
+  margin: 8px 0;
+}
+
+.invitation-intro .ornament,
+.intro-ornament {
+  color: #d9b979;
+}
+
+.intro-ornament {
+  text-align: center;
+  font-size: 32px;
+  animation: ornamentFloat 4s ease-in-out infinite;
+}
+
+@keyframes ornamentFloat {
+  50% { transform: translateY(7px); }
+}
+
+.top-ornament { margin-bottom: 20px; }
+.bottom-ornament { margin-top: 30px; }
+
+.invitation-intro .gold-button {
+  background: linear-gradient(135deg, #f0dfb8, #bd985d);
+  color: #101a35;
+  border: 1px solid #f8e8c6;
+}
+
+/* SHARED NAVY + IVORY SECTIONS */
+
+.date-section,
+.functions-section,
+.family-section {
+  background:
+    radial-gradient(ellipse at top, rgba(218, 194, 151, .15), transparent 55%),
+    #f7f0e4;
+  color: #202943;
+}
+
+.dark-eyebrow,
+.section-heading {
+  color: #293754;
+}
+
+.function-card,
+.venue-card,
+.family-panel {
+  border-color: rgba(166, 132, 77, .5);
+}
+
+.function-date strong,
+.function-details h3,
+.family-panel h3,
+.presence-section h2 {
+  color: #172443;
+}
+
+.count-box {
+  background: #101a35;
+  color: #f0dfb8;
+  border: 1px solid #c9aa70;
+}
+
+@media (max-width: 600px) {
+  .royal-opening-content { padding-top: 32vh; }
+  .royal-opening-content h1 { font-size: 43px; }
+  .palace-chandelier { top: 9%; font-size: 42px; }
+  .intro-frame { padding: 45px 18px; }
+  .invitation-intro .couple-name { font-size: 65px; }
+}
+
   .presence-message {
     font-size: 21px;
   }
