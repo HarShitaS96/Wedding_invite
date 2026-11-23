@@ -12,54 +12,57 @@
   <!-- Floating background particles -->
   <div class="particles" id="particles"></div>
 
-  <!-- SCREEN 1: ENVELOPE -->
-  <section class="welcome-screen" id="welcomeScreen">
-    <div class="welcome-content">
-      <p class="eyebrow">A CELEBRATION OF LOVE</p>
-      <h1>A Royal Invitation<br>Awaits You</h1>
 
-      <div class="envelope-wrapper">
-        <button class="envelope" id="openInvitation" aria-label="Open wedding invitation">
-          <div class="envelope-back"></div>
-          <div class="envelope-letter">
-            <span>YOU ARE INVITED</span>
-            <strong>H & S</strong>
-          </div>
-          <div class="envelope-front"></div>
-          <div class="envelope-flap"></div>
-          <div class="wax-seal" id="waxSeal">H <span>&</span> S</div>
-        </button>
-      </div>
+<!-- SCREEN 1: ROYAL PALACE OPENING -->
+<section class="welcome-screen" id="welcomeScreen">
+  <div class="palace-glow"></div>
+  <div class="palace-arch arch-outer"></div>
+  <div class="palace-arch arch-inner"></div>
+  <div class="palace-chandelier">✧</div>
+  <div class="palace-petals" id="palacePetals"></div>
 
-      <p class="tap-text" id="openText">TAP TO OPEN</p>
+  <div class="royal-opening-content">
+    <p class="eyebrow">A ROYAL CELEBRATION OF LOVE</p>
+    <div class="royal-divider">✦ ━━━━━ ❖ ━━━━━ ✦</div>
+    <h1>A JOURNEY<br>OF TWO HEARTS</h1>
+    <p class="opening-subtitle">A beautiful beginning. A forever together.</p>
+    <button class="royal-enter-button" id="openInvitation">
+      ENTER THE CELEBRATION <span>✦</span>
+    </button>
+  </div>
+  <div class="opening-bottom">WITH THE BLESSINGS OF OUR FAMILIES</div>
+</section>
+
+<!-- SCREEN 2: CINEMATIC COUPLE REVEAL -->
+<section class="invitation-intro" id="invitationIntro">
+  <div class="intro-stars"></div>
+  <div class="intro-ornament top-ornament">❖</div>
+
+  <div class="intro-frame">
+    <p class="eyebrow">TOGETHER WITH THEIR FAMILIES</p>
+    <p class="intro-small">
+      Request the pleasure of your company at the wedding celebration of
+    </p>
+
+    <div class="name-reveal">
+      <h2 class="couple-name bride-name">Harshita</h2>
+      <div class="ampersand">&</div>
+      <h2 class="couple-name groom-name">Shishir</h2>
     </div>
-  </section>
 
-  <!-- GOLDEN TRANSITION -->
-  <div class="golden-transition" id="goldenTransition">
-    <div class="golden-light"></div>
-    <div class="transition-sparkles" id="transitionSparkles"></div>
+    <div class="ornament">✦ ━━━━━ ❖ ━━━━━ ✦</div>
+    <p class="intro-message">
+      Two hearts. One beautiful journey.<br>
+      A lifetime of love begins.
+    </p>
+
+    <button class="gold-button" id="continueToDate">
+      DISCOVER OUR WEDDING DATE <span>→</span>
+    </button>
   </div>
 
-  <!-- SCREEN 2: COUPLE INTRODUCTION -->
-  <section class="invitation-intro" id="invitationIntro">
-    <div class="intro-frame">
-      <p class="eyebrow dark-eyebrow">TOGETHER WITH THEIR FAMILIES</p>
-      <p class="intro-small">Request the pleasure of your company at the wedding celebration of</p>
-
-      <h2 class="couple-name">Harshita</h2>
-      <div class="ampersand">&</div>
-      <h2 class="couple-name">Shishir</h2>
-
-      <div class="ornament">✦ ❖ ✦</div>
-      <p class="intro-message">Two hearts. One beautiful journey.<br>A lifetime of love begins.</p>
-
-      <button class="gold-button" id="continueToDate">
-        DISCOVER OUR WEDDING DATE
-        <span>→</span>
-      </button>
-    </div>
-  </section>
+  <div class="intro-ornament bottom-ornament">❖</div>
+</section>
 
   <!-- SCREEN 3: SCRATCH TO REVEAL -->
   <section class="date-section" id="dateSection">
