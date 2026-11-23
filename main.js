@@ -1,108 +1,244 @@
-/* =====================================
-   HARSHITA & SHISHIR
-   MAIN INTERACTIONS
-===================================== */
+// BACKGROUND PARTICLES
+const particles = document.getElementById("particles");
 
-document.addEventListener("DOMContentLoaded", () => {
+for (let i = 0; i < 45; i++) {
+  const particle = document.createElement("span");
+  particle.className = "particle";
+  particle.style.left = Math.random() * 100 + "%";
+  particle.style.animationDuration = (7 + Math.random() * 12) + "s";
+  particle.style.animationDelay = (Math.random() * 10) + "s";
+  particle.style.opacity = Math.random() * 0.7;
+  particles.appendChild(particle);
+}
 
-    // Background golden particles
+// ENVELOPE OPENING
+const envelope = document.getElementById("openInvitation");
+const openText = document.getElementById("openText");
+const welcomeScreen = document.getElementById("welcomeScreen");
+const goldenTransition = document.getElementById("goldenTransition");
+const transitionSparkles = document.getElementById("transitionSparkles");
+const invitationIntro = document.getElementById("invitationIntro");
 
-    const particleContainer = document.getElementById("particles");
+let envelopeOpened = false;
 
-    for (let i = 0; i < 45; i++) {
-        const particle = document.createElement("span");
+function createSparkles() {
+  transitionSparkles.innerHTML = "";
 
-        particle.classList.add("particle");
-        particle.style.left = Math.random() * 100 + "%";
-        particle.style.animationDuration = (Math.random() * 8 + 7) + "s";
-        particle.style.animationDelay = (Math.random() * 10) + "s";
-        particle.style.opacity = Math.random();
+  for (let i = 0; i < 110; i++) {
+    const sparkle = document.createElement("span");
+    sparkle.className = "transition-sparkle";
 
-        particleContainer.appendChild(particle);
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 100 + Math.random() * 550;
+
+    sparkle.style.setProperty("--x", Math.cos(angle) * distance + "px");
+    sparkle.style.setProperty("--y", Math.sin(angle) * distance + "px");
+    sparkle.style.animationDelay = Math.random() * 0.25 + "s";
+
+    transitionSparkles.appendChild(sparkle);
+  }
+}
+
+envelope.addEventListener("click", () => {
+  if (envelopeOpened) return;
+
+  envelopeOpened = true;
+  envelope.classList.add("opening");
+  openText.textContent = "OPENING YOUR INVITATION...";
+
+  setTimeout(() => {
+    createSparkles();
+    goldenTransition.classList.add("active");
+  }, 800);
+
+  setTimeout(() => {
+    welcomeScreen.style.display = "none";
+    goldenTransition.classList.remove("active");
+    invitationIntro.scrollIntoView({ behavior: "smooth" });
+  }, 2400);
+});
+
+// CONTINUE TO SCRATCH CARD
+const continueButton = document.getElementById("continueToDate");
+const dateSection = document.getElementById("dateSection");
+
+continueButton.addEventListener("click", () => {
+  dateSection.scrollIntoView({ behavior: "smooth" });
+});
+
+// SCRATCH CARD
+const scratchCanvas = document.getElementById("scratchCanvas");
+const scratchCard = document.getElementById("scratchCard");
+const scratchContext = scratchCanvas.getContext("2d");
+
+let isScratching = false;
+let dateRevealed = false;
+
+function setupScratchCard() {
+  const rect = scratchCard.getBoundingClientRect();
+  const pixelRatio = window.devicePixelRatio || 1;
+
+  scratchCanvas.width = rect.width * pixelRatio;
+  scratchCanvas.height = rect.height * pixelRatio;
+
+  scratchContext.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+  const gradient = scratchContext.createLinearGradient(0, 0, rect.width, rect.height);
+  gradient.addColorStop(0, "#d6bd82");
+  gradient.addColorStop(0.5, "#f0dfb5");
+  gradient.addColorStop(1, "#bd9858");
+
+  scratchContext.globalCompositeOperation = "source-over";
+  scratchContext.fillStyle = gradient;
+  scratchContext.fillRect(0, 0, rect.width, rect.height);
+
+  scratchContext.fillStyle = "#70572f";
+  scratchContext.textAlign = "center";
+  scratchContext.font = "600 12px Montserrat, sans-serif";
+  scratchContext.fillText("✦  SCRATCH TO REVEAL  ✦", rect.width / 2, rect.height / 2 - 5);
+
+  scratchContext.font = "10px Montserrat, sans-serif";
+  scratchContext.fillText("A SPECIAL DATE AWAITS YOU", rect.width / 2, rect.height / 2 + 20);
+
+  scratchContext.globalCompositeOperation = "destination-out";
+}
+
+function getPointerPosition(event) {
+  const rect = scratchCanvas.getBoundingClientRect();
+
+  return {
+    x: event.clientX - rect.left,
+    y: event.clientY - rect.top
+  };
+}
+
+function scratchAt(event) {
+  if (!isScratching || dateRevealed) return;
+
+  const position = getPointerPosition(event);
+
+  scratchContext.beginPath();
+  scratchContext.arc(position.x, position.y, 23, 0, Math.PI * 2);
+  scratchContext.fill();
+
+  checkScratchProgress();
+}
+
+function checkScratchProgress() {
+  const width = scratchCanvas.width;
+  const height = scratchCanvas.height;
+  const pixels = scratchContext.getImageData(0, 0, width, height).data;
+
+  let transparentPixels = 0;
+  let totalPixels = 0;
+
+  // Check every 16th pixel to keep the calculation lightweight.
+  for (let i = 3; i < pixels.length; i += 64) {
+    totalPixels++;
+
+    if (pixels[i] < 100) {
+      transparentPixels++;
     }
+  }
 
-    // Elements
+  const scratchedPercentage = transparentPixels / totalPixels;
 
-    const envelope = document.getElementById("envelope");
-    const openButton = document.getElementById("openInvitation");
-    const openText = document.getElementById("openText");
+  if (scratchedPercentage > 0.35) {
+    revealDate();
+  }
+}
 
-    const transition = document.getElementById("goldenTransition");
-    const sparkleContainer = document.getElementById("transitionSparkles");
-    const intro = document.getElementById("invitationIntro");
+scratchCanvas.addEventListener("pointerdown", (event) => {
+  if (dateRevealed) return;
 
-    let invitationOpened = false;
+  isScratching = true;
+  scratchCanvas.setPointerCapture(event.pointerId);
+  scratchAt(event);
+});
 
-    // Create golden sparkle explosion
+scratchCanvas.addEventListener("pointermove", scratchAt);
 
-    function createSparkles() {
+scratchCanvas.addEventListener("pointerup", () => {
+  isScratching = false;
+});
 
-        sparkleContainer.innerHTML = "";
+scratchCanvas.addEventListener("pointercancel", () => {
+  isScratching = false;
+});
 
-        for (let i = 0; i < 110; i++) {
+// REVEAL DATE BUTTON
+const revealDateButton = document.getElementById("revealDateButton");
 
-            const sparkle = document.createElement("span");
+function revealDate() {
+  if (dateRevealed) return;
 
-            sparkle.classList.add("transition-sparkle");
+  dateRevealed = true;
+  isScratching = false;
 
-            const angle = Math.random() * Math.PI * 2;
-            const distance = 150 + Math.random() * 650;
+  scratchContext.clearRect(
+    0,
+    0,
+    scratchCanvas.width,
+    scratchCanvas.height
+  );
 
-            const x = Math.cos(angle) * distance;
-            const y = Math.sin(angle) * distance;
+  scratchCanvas.style.display = "none";
+  revealDateButton.style.display = "none";
 
-            sparkle.style.setProperty("--move-x", `${x}px`);
-            sparkle.style.setProperty("--move-y", `${y}px`);
+  document.getElementById("countdownArea").classList.add("visible");
 
-            sparkle.style.animationDelay = Math.random() * 0.35 + "s";
+  startCountdown();
+}
 
-            sparkleContainer.appendChild(sparkle);
-        }
-    }
+revealDateButton.addEventListener("click", revealDate);
 
-    // Open invitation
+// COUNTDOWN
+const weddingDate = new Date("2027-01-28T19:00:00+05:30").getTime();
 
-    function openEnvelope() {
+let countdownInterval;
 
-        if (invitationOpened) return;
+function startCountdown() {
+  updateCountdown();
 
-        invitationOpened = true;
+  if (countdownInterval) {
+    clearInterval(countdownInterval);
+  }
 
-        envelope.classList.add("opening");
+  countdownInterval = setInterval(updateCountdown, 1000);
+}
 
-        openText.textContent = "OPENING YOUR INVITATION...";
+function updateCountdown() {
+  const now = Date.now();
+  const difference = weddingDate - now;
 
-        openButton.disabled = true;
+  if (difference <= 0) {
+    document.getElementById("days").textContent = "00";
+    document.getElementById("hours").textContent = "00";
+    document.getElementById("minutes").textContent = "00";
+    document.getElementById("seconds").textContent = "00";
 
-        // Start golden transition
+    clearInterval(countdownInterval);
+    return;
+  }
 
-        setTimeout(() => {
+  const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((difference / (1000 * 60)) % 60);
+  const seconds = Math.floor((difference / 1000) % 60);
 
-            createSparkles();
-            transition.classList.add("active");
+  document.getElementById("days").textContent = String(days).padStart(2, "0");
+  document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+  document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+  document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+}
 
-        }, 700);
+// INITIALIZE SCRATCH CARD AFTER PAGE LOAD
+window.addEventListener("load", () => {
+  setupScratchCard();
+});
 
-        // Reveal next screen
-
-        setTimeout(() => {
-
-            intro.classList.add("revealed");
-
-            transition.classList.remove("active");
-
-            window.scrollTo({
-                top: intro.offsetTop,
-                behavior: "smooth"
-            });
-
-        }, 2600);
-
-    }
-
-    openButton.addEventListener("click", openEnvelope);
-    openText.addEventListener("click", openEnvelope);
-
-    console.log("Wedding invitation loaded successfully ❤️");
-
+window.addEventListener("resize", () => {
+  if (!dateRevealed) {
+    setupScratchCard();
+  }
 });
