@@ -1321,3 +1321,15 @@ body {
     font-size: 21px;
   }
 }
+
+.welcome-screen.palace-exit {
+  animation: palaceExit 1.2s ease forwards;
+}
+
+@keyframes palaceExit {
+  to {
+    opacity: 0;
+    transform: scale(1.06);
+    visibility: hidden;
+  }
+}
