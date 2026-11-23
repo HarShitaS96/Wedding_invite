@@ -589,3 +589,219 @@ button {
     transition-duration: 0.01ms !important;
   }
 }
+/* SCREEN 4: WEDDING CELEBRATIONS */
+
+.functions-section {
+  min-height: 100vh;
+  padding: 85px 20px;
+  background:
+    radial-gradient(ellipse at top, #fffdf7, transparent 65%),
+    #f5efdf;
+  text-align: center;
+}
+
+.functions-content {
+  width: min(760px, 100%);
+  margin: 0 auto;
+}
+
+.functions-intro {
+  max-width: 480px;
+  margin: 0 auto 40px;
+  color: #766d5d;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 21px;
+  line-height: 1.5;
+}
+
+.function-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  text-align: left;
+}
+
+.function-card {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 22px;
+  background: rgba(255, 252, 243, 0.9);
+  border: 1px solid rgba(185, 145, 75, 0.55);
+  box-shadow: 0 8px 22px rgba(78, 57, 24, 0.06);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.function-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(78, 57, 24, 0.12);
+}
+
+.function-date {
+  flex-shrink: 0;
+  width: 82px;
+  height: 88px;
+  background: linear-gradient(145deg, #175644, #07372c);
+  border: 1px solid #c7a15d;
+  color: #f4dfad;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.function-date strong {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.function-date span {
+  font-size: 8px;
+  letter-spacing: 2px;
+  margin-top: 6px;
+}
+
+.function-details {
+  flex: 1;
+}
+
+.function-number {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #a17d45;
+}
+
+.function-details h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  font-weight: 600;
+  color: #174c3d;
+  margin: 5px 0;
+}
+
+.function-details p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: #766d5d;
+  line-height: 1.3;
+}
+
+.function-flower {
+  color: #bd9652;
+  font-size: 30px;
+  padding: 0 8px;
+}
+
+.wedding-card {
+  background: linear-gradient(110deg, #f9f0dc, #fffaf0);
+  border-color: #b58b4d;
+}
+
+/* VENUE */
+
+.venue-card {
+  margin-top: 55px;
+  padding: 42px 20px;
+  background: linear-gradient(145deg, #0d4939, #052c24);
+  border: 1px solid #c6a15e;
+  outline: 1px solid rgba(198, 161, 94, 0.4);
+  outline-offset: 6px;
+  color: #f5e5bc;
+}
+
+.venue-card .eyebrow {
+  color: #e5c987;
+}
+
+.venue-icon {
+  font-size: 40px;
+  color: #e5c987;
+  margin: 8px 0;
+}
+
+.venue-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.venue-card > p:not(.eyebrow) {
+  font-size: 12px;
+  color: #e9d8ae;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+}
+
+.venue-button {
+  display: inline-block;
+  padding: 14px 22px;
+  background: linear-gradient(135deg, #e5ce98, #bd9652);
+  color: #123d30;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  transition: transform 0.25s ease;
+}
+
+.venue-button:hover {
+  transform: translateY(-3px);
+}
+
+.functions-footer {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: #8b7047;
+  margin-top: 45px;
+}
+
+@media (max-width: 520px) {
+  .functions-section {
+    padding: 65px 16px;
+  }
+
+  .function-card {
+    gap: 14px;
+    padding: 15px 12px;
+  }
+
+  .function-date {
+    width: 68px;
+    height: 78px;
+  }
+
+  .function-date strong {
+    font-size: 35px;
+  }
+
+  .function-details h3 {
+    font-size: 25px;
+  }
+
+  .function-details p {
+    font-size: 16px;
+  }
+
+  .function-number {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .function-flower {
+    font-size: 22px;
+    padding: 0;
+  }
+
+  .venue-card {
+    padding: 35px 15px;
+  }
+
+  .venue-card h3 {
+    font-size: 30px;
+  }
+}
